@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// let person={
+		// 	age:24,
+		// 	name:"yangxiao",
+		// 	height:"180cm",
+		// 	width:"60kg",
+		// 	talk: function(){
+		// 		console.log("can talk");
+		// 	},
+		// 	run: function(){
+		// 		console.log("can run");
+		// 	},
+		// 	eat: function(){
+		// 		console.log("can eat");
+		// 	},
+		// };
+		// console.log(person.run());
+
+		// let arr=[
+		// 	{nub:1,name:"lisi",age:29},
+		// 	{nub:1,name:"zhangsan",age:13},
+		// 	{nub:1,name:"wangwu",age:20}
+		// ];
+		// let brr=[];
+		// for(let i=0;i<arr.length;i++){
+		// 	if(arr[i].age>15){
+		// 		brr[brr.length]=arr[i];
+		// 	}
+		// }
+
+		// function fun(){
+		// 	console.log(brr)
+		// }
+
+		// fun()
+
+		// function person(name,age){
+		// 	this.name=name;
+		// 	this.age=age;
+		// 	this.talk=function(){
+		// 		console.log('can talk');
+		// 	}
+		// }
+		// let aa = new person('aa',30);
+		// aa(console.log(aa.age));
+
+		// function fun(n){
+		// 	this.name=n;
+		// 	this.run=function(){
+		// 		console.log(this.name);
+		// 	}
+		// }
+		// let obj=new fun('wangwu');
+		// obj.run();
+
+		function fun(name,age){
+			this.name=name;
+			this.age=age;
+		}
+		person.prototype.run=function(){
+			console.log(this.name);
+		}
+		person.prototype.talk=function(){
+			console.log("can talk");
+		}
+		let obj=new person('lisi',30);
+		obj(this.name)
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

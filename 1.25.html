@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// var aa=200;
+		// function fun(){
+		// 	this.aa=300;
+		// }
+		// fun()
+		// console.log(aa)
+
+		// window.onload=function(){
+		// 	let back=document.querySelector('.back');
+		// 	let forward=document.querySelector('.forward');
+		// 	let load=document.querySelector('.load');
+		// 	back.onclick=function(){
+		// 		history.back();
+		// 	}
+		// 	forward.onclick=function(){
+		// 		history.forward();
+		// 	}
+		// 	load.onclick=function(){
+		// 		history.go(0);
+		// 	}
+		// }
+		// console.log(window.screen.width);
+		// console.log(window.screen.height);
+		// window.onload=function(){
+		// 	var div=document.querySelectorAll('div');
+		// 	div.forEach(function(value,index){
+		// 		value.innerHTML='这是第'+index+'个div';
+		// 		console.log(value)
+		// 	}); 
+		// }
+
+		window.onload=function(){
+			arr=[
+				{id:1,content:"这是第一篇文章"},
+				{id:1,content:"这是第二篇文章"},
+				{id:1,content:"这是第三篇文章"},
+				{id:1,content:"这是第四篇文章"},
+				{id:1,content:"这是第五篇文章"}
+			];
+			let str='';
+			arr.forEach(function(value){
+				str+='<li>'+value.content+'</li>';
+			})
+			document.querySelector('ul').innerHTML=str;
+		}
+	</script>
+</head>
+<body>
+	<ul></ul>
+	<!-- 这是首页
+	<button class="back" style="width: 200px;height:50px;background: #000;color:#fff;margin: 100px auto;display: block;font-size: 15px;">返回</button>
+	<button class="forward" style="width: 200px;height:50px;background: #000;color:#fff;margin: 100px auto;display: block;font-size: 15px;">前进</button>
+	<button class="load" style="width: 200px;height:50px;background: #000;color:#fff;margin: 100px auto;display: block;font-size: 15px;">刷新</button>
+	<a href="list.html" style="font-size: 100px;text-align: center;display: block;">列表页</a> -->
+</body>
+</html>

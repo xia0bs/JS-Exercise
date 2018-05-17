@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>楼层</title>
+	<style>
+     *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+     }
+     .nav{
+        position: fixed;
+        margin-top:50px; 
+        margin-left: 50px;
+     }
+     .nav li{
+        border-top: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #000;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 14px;
+     }
+     .nav li:hover{
+        background: yellow;
+     }
+     .nav li.active{
+        background: yellow;
+     }
+     .nav li:last-child{
+        border-bottom: 1px solid #000;
+     }
+     .floors{
+        margin-left: 200px;
+     }
+     .floors li{
+        width: 1000px;
+        height: 600px;
+        border: 1px solid #333;
+        margin-bottom: 120px;
+        font-size: 200px;
+        line-height: 600px;
+        text-align: center;
+        font-weight: bolder;
+     }
+     .return{
+        border: 1px solid #000;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        position: fixed;
+        left: 50px;
+        bottom: 50px;
+     }
+     .return:hover{
+        background: yellow;
+     }
+    </style>
+</head>
+<body>
+    <ul class="nav">
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>   
+    </ul>
+    <ul class="floors">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <div class="return">👆</div>
+</body>
+<script src="animate.js"></script>
+<script>
+    let back=document.querySelector('.return');
+    back.onclick=function(){
+        document.body.scrollTop=0;
+        document.documentElement.scrollTop=0;
+        animate(document.body,{scrollTop:0},400);
+        animate(document.documentElement,{scrollTop:0},400);
+    }
+    let floors=document.querySelectorAll('.floors li');
+    let ch=document.documentElement.clientHeight;
+    let navs=document.querySelectorAll('.nav li')
+    window.onscroll=function(){
+        let tops=document.body.scrollTop?
+        document.body.scrollTop:document.documentElement.scrollTop;
+        floors.forEach(function(val,index){
+            if(tops>=val.offsetTop-ch){
+                navs.forEach(function(dom){
+                    dom.classList.remove('active');
+                })
+                navs[index].classList.add('active')
+            }
+        })
+    }
+    navs.forEach(function(dom,index){
+        dom.onclick=function(){
+            flag=false;
+            let t=floors[index].offsetTop;
+            animate(document.body,{scrollTop:t},100);
+            animate(document.documentElement,{scrollTop:t},100);
+        }
+    })
+    </script>
+</html>

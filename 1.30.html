@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小米内容选项卡式轮播</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.box{
+			width: 550px;
+			height: 400px;
+			margin: 30px auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.list li{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 100%;
+		}
+		.list li.active{
+			left:0;
+		}
+		.list li img{
+			height: 100%;
+		}
+		.right,.left{
+			position: absolute;
+			top:42%;
+			color: #fff;
+			background: rgba(0,0,0,0.3);
+			width: 35px;
+			height: 70px;
+			line-height: 70px;
+			text-align: center;
+			font-size: 24px;
+			font-family: '宋体';
+		}
+		.right{
+			right: 0;
+		}
+		.left{
+			left:0;
+		}
+		.circles{
+			width: 120px;
+			height: 15px;
+			position: absolute;
+			bottom:30px;
+			left: 41%;
+			display: flex;
+			justify-content: space-around;
+		}
+		.circles li{
+			width: 10px;
+			height: 10px;
+			border:1px solid #999;
+			border-radius: 50%;
+		}
+		.circles li.active{
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul class="list">
+			<li class="active"><img src="img/1.jpeg" alt=""></li>
+			<li><img src="img/2.jpeg" alt=""></li>
+			<li><img src="img/3.jpeg" alt=""></li>
+			<li><img src="img/4.jpeg" alt=""></li>
+		</ul>
+		<ul class="btn">
+			<li class="right">&gt;</li>
+			<li class="left">&lt;</li>
+		</ul>
+		<ul class="circles">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+<script src="animate.js"></script>
+<script>
+	let now=0;
+	let next=0;
+	let list=document.querySelectorAll('.list li');
+	let box=document.querySelector('.box');
+	let right=document.querySelector('.right');
+	let left=document.querySelector('.left');
+	let circles=document.querySelectorAll('.circles li')
+	let width=parseInt(getComputedStyle(box,null).width);
+	let flag=true;
+	function move() {
+		if(!flag){
+			return;
+		}
+		flag=false;
+		next=now+1;
+		if (next>=list.length) {
+			next=0;
+		}
+		list[next].style.left=width+'px';
+		animate(list[now],{left:-width},function(){flag=true});
+		animate(list[next],{left:0});
+		circles[now].classList.remove('active');
+		circles[next].classList.add('active');
+		now=next;
+	}
+	let t=setInterval(move,2000);
+	box.onmouseenter=function(){
+		clearInterval(t);
+	}
+	box.onmouseleave=function(){
+		t=setInterval(move,2000);
+	}
+	right.onclick=function(){
+		move();
+	}
+	left.onclick=function(){
+		next=now-1;
+		if (next<0) {
+			next=list.length-1;
+		}
+		list[next].style.left=-width+'px';
+		animate(list[now],{left:width});
+		animate(list[next],{left:0},function(){flag=true});
+		circles[now].classList.remove('active');
+		circles[next].classList.add('active');
+		now=next;
+	}
+	circles.forEach(function(dom,i){
+		dom.onclick=function(){
+			if (!flag) {
+				return;
+			}
+			flag=false;
+			if(i>now){
+				next=i;
+				list[next].style.left="100%";
+				animate(list[now],{left:-width},function(){flag=true});
+				animate(list[next],{left:0});
+				circles[now].classList.remove('active');
+				circles[next].classList.add('active');
+			}else if(i<now){
+				next=i;
+				list[next].style.left="-100%";
+				animate(list[now],{left:width},function(){flag=true});
+				animate(list[next],{left:0});
+				circles[now].classList.remove('active');
+				circles[next].classList.add('active');
+				now=next;
+			}else{
+				flag=true;
+			}
+		}
+	})
+</script>
+</html>

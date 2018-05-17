@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery.js"></script>
+</head>
+<style>
+	div{
+		width: 200px;
+		height: 200px;
+		background: red;
+	}
+</style>
+<body>
+	<button class="begin">开始</button>
+	<button class="stop">停止</button>
+	<div></div>
+</body>
+<script>
+	$(document).ready(function(){
+		$("button.begin").on("click",function(){
+			$('div').slideDown(1000).animate({width:400},1000).animate({height:300},1000)
+		}).next().on("click",function(){
+			$('div').stop(true);
+		})
+	})
+</script>
+</html>

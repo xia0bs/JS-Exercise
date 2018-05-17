@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>中国移动式轮播</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.box{
+			margin:50px auto;
+			width: 800px;
+			height: 100px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.list{
+			width: 100%;
+			height: 100%;
+			display: flex;
+		}
+
+		.list li{
+			/*position: absolute;*/
+			width: 25%;
+			height: 100%;
+		}
+		.list li img{
+			width: 100%;
+		}
+		.left,.right{
+			position: absolute;
+			background: rgba(0,0,0,0.3);
+			width: 15px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			font-size: 14px;
+			font-family: '宋体';
+			color: #fff;
+		}
+		.left{
+			left: 0;
+			top: 40%;
+		}
+		.right{
+			right: 0;
+			top: 40%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul class="list">
+			<li class="active"><img src="img/1.jpeg" alt=""></li>
+			<li><img src="img/2.jpeg" alt=""></li>
+			<li><img src="img/3.jpeg" alt=""></li>
+			<li><img src="img/4.jpeg" alt=""></li>
+		</ul>
+		<div class="left">&lt;</div>
+		<div class="right">&gt;</div>
+	</div>
+</body>
+<script src="animate.js"></script>
+<script>
+	let width=document.querySelector('.box .list img').offsetWidth;
+	let list=document.querySelector('.list');
+	function move(){
+		animate(list,{left:-width},function(){
+			let first=list.firstElementChild;
+			list.appendChild(first);
+			list.style.left=0;
+		});
+	}
+
+	let t=setInterval(move,2000);
+	list.parentNode.onmouseenter=function(){
+		clearInterval(t)
+	}
+	list.parentNode.onmouseleave=function(){
+		t=setInterval(move,2000);
+	}
+	let right=document.querySelector('.right');
+	right.onclick=function(){
+		move();
+	}
+	right.previousElementSibling.onclick=function(){
+		let last=list.lastElementChild;
+		let first=list.firstElementChild;
+		list.insertBefore(last,first);
+		list.style.left=-width+'px';
+		animate(list,{left:0});
+	}
+</script>
+</html>
