@@ -1,0 +1,24 @@
+<script>
+	// 随机取一个数组的三个数字，且不能有重复
+	let arr=[1,2,3,4,5,6,7,8,9]
+	function fn(arr){
+		let newarr = [];
+		while(newarr.length < 3){
+			let j = Math.round(Math.random()*arr.length);
+			if (!isExist(newarr,arr[j])) {
+				newarr.push(arr[j])
+			}
+		}
+		return newarr
+	}
+	function isExist(arr,value){
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i]==value) {
+				return true;
+			}
+		}
+		return false
+	}
+	let result = fn(arr)
+	console.log(result)
+</script>

@@ -1,0 +1,23 @@
+<!-- 去重 -->
+<script>
+	var arr=[2,5,634,642,2,124,5,6]
+	function aa(arr,val){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i]==val){
+				return true;
+			}
+		}
+	return false;
+	}
+
+	function delRepeat(arr){
+		var newarr=[];
+		for(var i=0;i<arr.length;i++){
+			if (!aa(newarr,arr[i])) {
+				newarr.push(arr[i]);
+			}
+		}
+		return newarr
+	}
+	console.log(delRepeat(arr))
+</script>

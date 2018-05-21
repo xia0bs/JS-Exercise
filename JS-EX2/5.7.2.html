@@ -1,0 +1,15 @@
+<body>
+	<ul class="list">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script>
+	let list = document.querySelector('.list')
+	list.forEach(function(value,index){
+    	console.log(this)
+	},list[0]);
+</script>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="liuyanzhizuo.js"></script>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .box{
+        width: 800px;
+        height: auto;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .message{
+        width: 66%;
+        min-width: 200px;
+        border: 1px solid rebeccapurple;
+        padding: 0 20px;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    .list{
+        width: 100%;
+        height: 80px;
+        border-bottom: 2px solid rosybrown;
+        display: flex;
+        padding: 5px 5px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    }
+    .message >.list.active{
+        background: red;
+    }
+    .list > .img{
+        width: 70px;
+        height: 70px;
+        margin-right: 5px;
+    }
+    .list .img img{
+        width: 70px;
+        height: 70px;
+    }
+    .list > .info{
+        height: 70px;
+        flex-grow: 1;
+    }
+    .list > .info >h3{
+        width: 100%;
+        height: 20px;
+        font-size: 20px;
+        padding: 0 0 0 10px;
+        box-sizing: border-box;
+        margin-bottom: 5px;
+    }
+    .list > .info > p{
+        width: 100%;
+        height: auto;
+        font-size: 14px;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        background: #0086b3;
+    }
+    .panel{
+        width: 33%;
+        height: 300px;
+        border: 1px solid rebeccapurple;
+        border-radius: 5px;
+    }
+    .panel>h3{
+        height: 30px;
+        line-height: 50px;
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    div.formGroup{
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        padding: 10px 10px;
+        box-sizing: border-box;
+    }
+    div.formGroup>input{
+        height: 30px;
+        border: 1px solid #cccccc;
+        background: transparent;
+        line-height: 50px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+    div.formGroup >textarea{
+        width: 100%;
+        height: 100px;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    div.formGroup >button{
+        width: 100%;
+        height: 30px;
+        background: #0086b3;
+        border-radius: 10px;
+    }
+    div.formGroup >.tips{
+        font-size: 12px;
+    }
+</style>
+<body>
+<section class="box">
+    <section class="message">
+        <div class="list">
+            <div class="img">
+                <img src="img/w.png" alt="">
+            </div>
+            <div class="info">
+                <h3>标题</h3>
+                <p>内容</p>
+            </div>
+        </div>
+    </section>
+    <section class="panel">
+        <h3>欢迎留言</h3>
+        <div class="formGroup">
+            <input type="text">
+        </div>
+        <div class="formGroup">
+            <textarea maxlength="100"></textarea>
+            <div class="tips">
+                最多能够输入100个字，已经输入 <span>0</span> 个字
+            </div>
+        </div>
+        <div class="formGroup">
+            <button>Submit</button>
+        </div>
+    </section>
+</section>
+</body>
+</html>

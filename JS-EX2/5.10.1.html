@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>圆</title>
+</head>
+<style>
+	body{
+		background:#000;
+	}
+	.circle{
+		width: 100px;
+		height: 100px;
+		background: blue;
+		position: absolute;
+		top: 200px;
+		left: 200px;
+		border-radius: 50%;
+	}
+</style>
+<body>
+</body>
+<script>
+	for (var i = 0; i < 100; i++) {
+		let divs = document.createElement('div');
+		let circle = document.body.appendChild(divs)
+		divs.classList.add('circle')
+		let w = Math.round(Math.random()*70+30)
+		let tops = Math.round(Math.random()*innerHeight-w)
+		let lefts = Math.round(Math.random()*innerWidth-w)
+		let color = colorRandom()
+
+		circle.style.width = w+'px';
+		circle.style.height = w+'px';
+		circle.style.top = tops+'px';
+		circle.style.left = lefts+'px';
+		circle.style.background = color;
+
+		function colorRandom(){
+			let str = 'rgba(';
+			for (var i = 0; i < 3; i++) {
+				str += Math.round(Math.random()*255)+','
+			}
+			str += Math.random();
+			return str+')'
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .box{
+        width: 400px;
+        height: 400px;
+        margin: 20px auto;
+        background: white;
+    }
+    li{
+        width: 19px;
+        height: 19px;
+        list-style: none;
+        border-right: 1px solid #0AAA40;
+        border-bottom: 1px solid #0AAA40;
+        float: left;
+    }
+</style>
+<body>
+<ul class="box"></ul>
+</body>
+</html>
+<script>
+    let box = document.querySelector('.box');
+    for(let i=0;i<400;i++){
+        box.innerHTML +=`<li></li>`
+    }
+    box.onclick=function (e) {
+        let ele = e.target;
+        if(ele.nodeName == 'LI'){
+            ele.style.background = 'red'
+        };
+    }
+</script>
+<!--
+事件委派
+动态创建的元素需要被操作，需要事件委派
+
+
+-->

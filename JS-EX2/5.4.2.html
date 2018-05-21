@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>登录表单</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			background: skyblue;
+		}
+		.box{
+			width: 400px;
+			height: 400px;
+			background: rgba(255,255,255,.8);
+			display:block;
+			margin: 100px auto;
+			border-radius: 10px;
+		}
+		h1{
+			text-align: center;
+			line-height: 3;
+			color: #333;
+		}
+		h3{
+			text-align: left;
+			padding-left: 50px;
+			color: #6b6b6b;
+			margin-bottom: 10px;
+		}
+		input{
+			margin-bottom: 20px;
+			margin-left: 50px;
+			padding: 8px;
+			width: 68%;
+		}
+		button{
+			display: block;
+			width: 80px;
+			height: 40px;
+			margin: 40px auto;
+			color: #333;
+			border-radius: 5px;
+		}
+	</style>
+	<script>
+	window.onload = function(){
+		let user = document.getElementById('user')
+		let pass = document.getElementById('pass')
+		let btn = document.getElementById('btn')
+		btn.onclick = function(){
+			if (user.value == 'zhangsan' && pass.value == '123456') {
+				alert('登录成功')
+			}else{
+				alert('登录失败')
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="box">
+		<h1>登录系统</h1>
+		<h3>请输入用户名：</h3>
+		<input type="text" placeholder="用户名" id="user">
+		<h3>请输入密码：</h3>
+		<input type="password" placeholder="密码" id="pass">
+		<button id="btn">登录</button>
+	</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>表单</title>
+</head>
+<body>
+	
+</body>
+<script>
+	let table = document.querySelector('tbody');
+	let add = document.querySelector('button.add')
+	let student = [
+		{id:0,name:'张三',sex:'男',age:18,classes:'wuif1803',number:'180301'},
+		{id:1,name:'李四',sex:'女',age:19,classes:'wuif1803',number:'180302'},
+		{id:2,name:'张五',sex:'男',age:20,classes:'wuif1803',number:'180303'},
+		{id:3,name:'张六',sex:'女',age:21,classes:'wuif1803',number:'180304'},
+		{id:4,name:'张七',sex:'男',age:22,classes:'wuif1803',number:'180304'}
+	];
+
+	localStorage.setItem('student',JSON.stringify(student))
+	if (!localStorage.getItem('student')) {
+		localStorage.setItem('student',JSON.stringify(student))
+	}
+	let data = JSON.parse(localStorage.getItem('student'))
+
+	data.forEach(element=>{
+		createTr(element)
+	})
+
+	table.ondblclick = function(e){
+		let element = e.target;
+		if (element.nodeName == 'TD' && elenment.nodeName != 'del') {
+			let oldValue = element.innerText;
+			element.innerText = ''
+			let input = document.createElement('input')
+			input.value = oldValue;
+			element.appendChild(input)
+
+			input.onblur=function(){
+				let newValue = input.value;
+				element.removeChild(input)
+				element.innerText=newValue;
+			}
+		}else if(element.classList.contains('del')){
+			let trs = element.parentNode.parentNode;
+			table.removeChild(trs);
+		}
+	}
+
+	function createTr(obj){
+		let str=`
+			<td>${obj.classes}</td>
+			<td>${obj.number}</td>
+			<td>${obj.name}</td>
+			<td>${obj.age}</td>
+			<td>${obj.sex}</td>
+			<td>
+				<div class="del">Del</div>
+			</td>
+		`
+		table.innerHTML+=str
+	}
+
+
+</script>
+</html>

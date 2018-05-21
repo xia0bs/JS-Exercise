@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>欢迎留言</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		h1{
+			display: block;
+			margin: 50px auto;
+			text-align: center;
+		}
+		.left{
+			float: left;
+			width: 510px;
+			height: 470px;
+			border: 1px solid #333;
+			margin-left: 160px;
+			border-radius: 3px;
+		}
+		.right{
+			float: right;
+			width: 45%;
+			height: 500px;
+		}
+		.right input{
+			display: block;
+			width: 400px;
+			height: 50px;
+			border: 1px solid #333;
+			border-radius: 3px;
+			font-size: 14px;
+
+		}
+		textarea{
+			display: block;
+			margin-top: 30px;
+			width: 400px;
+			height: 260px;
+			resize: none;
+			border-radius: 3px;
+			font-size: 14px;
+		}
+		button{
+			margin-left: 100px;
+			display: block;
+			width: 200px;
+			height: 50px;
+			background-color: yellow;
+			color: #000;
+			font-size: 14px;
+			border-radius: 5px;
+			margin-top: 30px;
+		}
+		.right p{
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			color: #333;
+			margin-top: 30px;
+		}
+
+	</style>
+</head>
+<body>
+	<h1>欢迎留言</h1>
+	<main>
+		<section class="left">
+			<div class="list">
+				<div class="img">
+				</div>
+				<div class="info">
+					<h3>标题</h3>
+					<p>
+						留言
+					</p>
+				</div>
+			</div>
+		</section>
+		<div class="right">
+			<input type="text" placeholder="标题(最多能输入10个字)" maxlength="10">
+			<textarea name="" id="" cols="30" rows="10" maxlength="100"></textarea>
+			<p>最多能输100个字，已经输入<span>0</span>个字</p>
+			<button>提交</button>
+		</div>
+	</main>
+</body>
+<script>
+	let input = document.querySelector('input')
+	let text = document.querySelector('textarea')
+	let span = document.querySelector('span')
+	let btn = document.querySelector('button')
+	let msg = document.querySelector('.left')
+	let list = document.querySelectorAll('.list')
+
+	text.onkeyup = function(){
+		let value = this.value;
+		span.innerHTML = value.length;
+	}
+
+	btn.onclick = function(){
+		let title = input.value;
+		let con = text.value;
+		input.value = '';
+		text.value = '';
+		let str = `<div class="list">
+						<div class="img">
+						</div>
+						<div class="info">
+							<h3>${title}</h3>
+							<p>${con}</p>
+						</div>
+					</div>`;
+		msg.innerText += str;
+	}
+
+
+</script>
+</html>

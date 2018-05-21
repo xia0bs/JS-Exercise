@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文档标题</title>
+</head>
+<style>
+    .box{
+        width: 500px;
+        height:500px;
+        margin: 0 auto;
+        border: 2px solid #2196f3;
+        position: relative;
+    }
+    .zhezhao{
+        width: 200px;
+        height: 200px;
+        background: #e53935;
+        position: absolute;
+        top:0;
+        left: 0;
+    }
+    .touming{
+        width: 500px;
+        height:500px;
+        z-index: 999;
+    }
+</style>
+<body>
+    <div class="box">
+        <div class="touming"></div>
+        <div class="zhezhao"></div>
+    </div>
+</body>
+<script>
+    let box=document.querySelector('.box');
+    let zhezhao=document.querySelector('.zhezhao');
+    let touming=document.querySelector('.touming');
+    let maxH=box.offsetHeight-zhezhao.offsetHeight;
+    let maxW=box.offsetWidth-zhezhao.offsetWidth;
+    
+    zhezhao.onmouseover=function(e){
+        zhezhao.style.display = 'block'
+    }
+    zhezhao.onmouseout=function(e){
+        zhezhao.style.display = 'none'
+    }
+    box.onmousemove=function(e){
+        
+        let ox=e.offsetX;
+        let oy=e.offsetY;
+
+            let cx = e.offsetX , cy = e.offsetY;
+            let lefts = cx - ox , tops = cy - oy;
+
+            if (lefts>=maxW) {
+                lefts=maxW
+            }
+            if (lefts<0) {
+                lefts=0
+            }
+            if (tops>=maxH) {
+                tops=maxH
+            }
+            if (tops<0) {
+                tops=0
+            }
+            zhezhao.style.left=lefts-ox+'px';
+            zhezhao.style.top=tops-oy+'px';
+        };
+        zhezhao.onmouseup = function(){
+            box.onmousemove = null
+        }
+</script>
+</html>

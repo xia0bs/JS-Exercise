@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding:0;
+        list-style: none;
+        text-decoration: none;
+    }
+    .box{
+        width: 1000px;
+        height: auto;
+        margin: 20px auto;
+    }
+    .box h3{
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        color: mediumaquamarine;
+        margin-bottom: 20px;
+    }
+    table{
+        width: 100%;
+        height: auto;
+        border: 1px solid #cccbba;
+        border-collapse: collapse;
+        border-radius: 3px;
+        table-layout: fixed;
+    }
+    tr,td{
+        height: 40px;
+        text-align: center;
+        border-bottom: 1px solid #cccbba;
+        padding:2px 20px;
+    }
+    .del{
+        width: 80px;
+        height: 40px;
+        background: mediumaquamarine;
+        margin: 5px auto;
+        border-radius: 5px;
+        color: #fff;
+        line-height: 40px;
+        font-size: 18px;
+    }
+    .add{
+        width: 80px;
+        height: 40px;
+        background: mediumaquamarine;
+        margin: 5px auto;
+        border-radius: 5px;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+        font-size: 18px;
+    }
+    tr:nth-of-type(2n){
+        background: rgba(10,170,64,.1);
+    }
+    input{
+        width: 80px;
+    }
+</style>
+<body>
+<div class="box">
+    <h3>学生管理系统</h3>
+    <table>
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>班级</th>
+            <th>学号</th>
+            <th>操作</th>
+        </tr>
+    </table>
+    <div class="add">添加</div>
+</div>
+</body>
+</html>
+<script>
+   window.onload=function () {
+       let table = document.querySelector('tbody');
+       let add = document.querySelector('.add');
+       let del = document.querySelector('.del');
+       let students=[
+           {id:1,name:'miya',sex:'女',age:'18',classes:'1803',code:'1'},
+           {id:2,name:'june',sex:'男',age:'20',classes:'1803',code:'2'},
+           {id:3,name:'lucy',sex:'女',age:'19',classes:'1803',code:'3'},
+           {id:4,name:'alisa',sex:'女',age:'15',classes:'1803',code:'4'},
+       ];
+
+       //存到本地：
+      if(!localStorage.getItem('students')){
+          localStorage.setItem('students',JSON.stringify(students));
+      }
+      let data = JSON.parse(localStorage.getItem('students'));
+
+       data.forEach(ele=>{
+        createTr(ele);
+      });
+
+
+       table.ondblclick= function (ev) {
+           let ele = ev.target;
+           if(ele.nodeName == 'TD' && ele.className!='del'){
+              let ids = ele.parentNode.id;
+               let type = ele.getAttribute('type');
+               let oldv = ele.innerText;
+               ele.innerText = '';
+               let input = document.createElement('input');
+               ele.appendChild(input);
+               ele.firstElementChild.focus();
+               input.value=oldv;
+                input.onblur = function () {
+                    let newv=input.value;
+                    ele.removeChild(input);
+                    ele.innerText = newv;
+                    let value = data.filter(ele =>ele.id == ids);
+                    value[0][type] = newv;
+                    localStorage.setItem('students',JSON.stringify(data));
+                }
+
+           }else if(ele.classList.contains('del')){
+               let par=ele.parentNode.parentNode;
+               let ids = par.id;
+               table.removeChild(par);
+              data =  data.filter(ele=>ele.id!=ids);
+               localStorage.setItem('students',JSON.stringify(data));
+           }
+       };
+       // add.onclick=function () {
+       //     let tr = document.createElement('tr');
+       //     table.appendChild(tr);
+       //     tr.innerHTML = `
+       //             <tr>
+       //                  <td>echo</td>
+       //                  <td>女</td>
+       //                  <td>18</td>
+       //                  <td>1803</td>
+       //                  <td>01</td>
+       //                  <td>
+       //                      <div class="del">删除</div>
+       //                  </td>
+       //              </tr>
+       //             `
+       // }
+       add.onclick=function (ele) {
+           let obj = {id:'',name: 'lucy', sex: '女', age: '19', classes: '1803', code: ''}
+           obj.id = data[data.length-1].id + 1;
+           obj.code =parseInt (data[data.length-1].code)+1 ;
+
+           createTr(obj);
+           data.push(obj);
+           localStorage.setItem('students',JSON.stringify(data));
+
+       };
+       //封装：
+       function createTr(obj){
+           let str=`
+                     <tr id="${obj.id}">
+                        <td type="name">${obj.name}</td>
+                        <td type="sex">${obj.sex}</td>
+                        <td type="age">${obj.age}</td>
+                        <td type="classes">${obj.classes}</td>
+                        <td type="code">${obj.code}</td>
+                        <td>
+                            <div class="del">删除</div>
+                        </td>
+                    </tr>
+       `
+           table.innerHTML += str;
+
+   }
+
+   };
+
+</script>
+<!--
+消除border间的空隙：border-collcape:collcape;
+隔行变色：tr:nth-of-type(odd);
+偶数：even  基数：odd
+浏览器会自动添加， tbody  因此为了删除本来的原有的内容，会委派给tbody.
+-->

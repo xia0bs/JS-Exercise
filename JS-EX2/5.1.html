@@ -1,0 +1,43 @@
+<script>
+	// 排序
+	function sort(arr,type){
+		if (type == undefined ) {
+			type = 'up';
+		}
+		if (type == 'up') {
+			sortUp(arr);
+		}else if (type == 'down') {
+			sortDown(arr);
+		}else{
+			console.log('错误')
+		}
+	}
+
+	function sortUp(arr){
+		for(let i=0;i<arr.length;i++){
+			for(let j=0;j<arr.length-i-1;j++){
+				if (arr[j]>arr[j+1]) {
+					let temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		console.log(arr);
+	}
+
+	function sortDown(arr){
+		for(let i=0;i<arr.length;i++){
+			for(let j=0;j<arr.length-i-1;j++){
+				if (arr[j]<arr[j+1]) {
+					let temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		console.log(arr);
+	}
+
+	sort([324,14,0,-22,54,63,3423],'up')
+</script>

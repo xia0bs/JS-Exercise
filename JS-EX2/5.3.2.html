@@ -1,0 +1,38 @@
+<script>
+
+// 查找字符串中某字符串的位置，并放归在一数组里
+// 方法一
+let url='www.baidu.comwww.baidu.comwww.baidu.comwww.baidu.comwww.baidu.com'
+function position(str,str1) {
+    let newarr=[];
+    if (!str.includes(str1)){
+        return;
+    }
+    while(str.includes(str1)){
+        let pos=str.indexOf(str1)
+        newarr.push(pos);
+        star="*".repeat(str1.length)
+        str=str.replace(str1,star)
+    }
+    console.log(newarr);
+}
+position(url,'baidu');
+
+// 方法二
+// let url='www.baidu.comwww.baidu.comwww.baidu.comwww.baidu.comwww.baidu.com'
+// function position(str,str1) {
+//     if (!str.includes(str1)){
+//         return str+'中不存在'+str1
+//     }
+//     let arr=[];
+//     for (let i=0;i< str.length;i++){
+//         let newstr=str.substr(i,str1.length)
+//         if ( newstr === str1){
+//         arr.push(i);
+//         }
+//     }
+//     console.log(arr);
+// }
+// position(url,'baidu')
+
+</script>

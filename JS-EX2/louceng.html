@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>楼层</title>
+</head>
+<body>
+<style>
+    header{
+        width: 100%;
+        height: 100px;
+        background: #ff8787;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+    }
+    footer{
+        width: 100%;
+        height: 100px;
+        background: #ff8787;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+    }
+    .floor{
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+    }
+    .floor img{
+        width: 1000px;
+        height: 400px;
+        margin: 10px auto;
+        display: block;
+    }
+    .search{
+        width: 100%;
+        height: 100px;
+        background: #333;
+        position: fixed;
+        top: -100px;
+        left: 0;
+       
+    }
+</style>
+<div class="search"></div>
+<header>顶层</header>
+<div class="floor">
+    <img title="img/banner1.jpg" alt="">
+</div>
+<div class="floor">
+    <img title="img/banner2.jpg" alt="">
+</div>
+<div class="floor">
+    <img title="img/banner3.jpg" alt="">
+</div>
+<div class="floor">
+    <img title="img/banner4.jpg" alt="">
+</div>
+<div class="floor">
+    <img title="img/banner5.jpg" alt="">
+</div>
+<footer>底层</footer>
+</body>
+<script src="animate.js"></script>
+<script>
+    // 屏幕高度 + 滚动高度 >= 楼层距离
+    let floor = document.querySelectorAll('.floor');
+    let ch = innerHeight;
+    let arr=[];
+    let search = document.querySelector('.search')
+    let flag1 = true , flag2 = true;
+    floor.forEach(element=>{
+        arr.push(element.offsetTop)
+    })
+    window.onscroll = function(){
+        let st = document.body.scrollTop || document.documentElement.scrollTop;
+        for (var j = 0; j < floor.length; j++) {
+            if (ch + st >= arr[j] + 300) {
+                let imgs = floor[j].getElementsByTagName('img')
+                for (var k = 0; k < imgs.length; k++) {
+                    imgs[k].src = imgs[k].title
+                }
+            }
+        }
+        if (st >= 200) {
+            if (!flag1) {
+                return
+            }
+            flag1 = false;
+            animate(search,{top:0},function(){
+                flag1 = true;
+                flag2 = true;
+            })
+        }else{
+            if (!flag2) {
+                return
+            }
+            flag2 = false;
+            animate(search,{top:-100},function(){
+                flag1 = true;
+                flag2 = true;
+            })
+        }
+    }
+</script>
+</html>

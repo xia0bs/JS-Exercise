@@ -1,0 +1,16 @@
+<script>
+	// 替换一个字符串里的某些字符为*
+	let str = 'abcdabcdgg'
+	function replace(str,str1){
+		if (!str.includes(str1)) {
+			return
+		}
+		let star = '*'.repeat(str1.length)
+		while(str.includes(str1)){
+			str = str.replace(str1,star)
+		}
+		return str
+	}
+	let str3 = replace(str,'ab')
+	console.log(str3)
+</script>

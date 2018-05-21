@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>设置高度（宽度、左右）</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.box{
+			width: 10px;
+			height: 10px;
+			background: skyblue;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+<script>
+	let box = document.querySelector('.box');
+	let speed = 10;
+	let speedx = 9;
+	let maxH = window.innerHeight - box.offsetHeight;
+	let maxW = window.innerWidth - box.offsetWidth;
+
+	setInterval(move,20)
+	function move(){
+		let heights = box.offsetTop + speed;
+		let widths = box.offsetLeft + speedx;
+		if (heights >= maxH) {
+			speed*=-1;
+			heights = maxH
+		}
+		if (heights < 0) {
+			speed*=-1;
+			heights = 0;
+		}
+		if (widths >= maxW) {
+			speedx*=-1;
+			widths = maxW
+		}
+		if (widths < 0) {
+			speedx*=-1;
+			widths = 0;
+		}
+		box.style.left = widths + 'px'
+		box.style.top = heights + 'px'
+	}
+	window.onresize = function(){
+		maxH = window.innerHeight - box.offsetWidth;
+		maxW = window.innerWidth - box.offsetWidth;
+	}
+</script>
+</html>

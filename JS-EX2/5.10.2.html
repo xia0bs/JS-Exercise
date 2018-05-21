@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>同心圆</title>
+</head>
+<style>
+	.pointer{
+		width: 1px;
+		height: 1px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.circle{
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		transition: all ease 1s;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
+<body>
+	<div class="pointer"></div>
+</body>
+<script>
+	let pointer = document.querySelector('.pointer');
+	let n = 50 , r = 200 , rad = 2*Math.PI/n;
+	for (var i = 0; i < n; i++) {
+		let divs = document.createElement('div');
+		let lefts = r*Math.cos(rad*i);
+		let tops = r*Math.sin(rad*i);
+		divs.classList.add('circle')
+		pointer.appendChild(divs)
+		divs.style.transitionDelay = 100*i+'ms'
+		setTimeout(function(){
+			divs.style.left = lefts +'px';
+			divs.style.top = tops + 'px';
+		},10)
+
+		let color = colorRandom()
+		divs.style.background = color;
+
+		function colorRandom(){
+			let str = 'rgb(';
+			for (var i = 0; i < 3; i++) {
+				str += Math.round(Math.random()*255)+','
+			}
+			return str.slice(0,-1)+')'
+		}
+	}
+</script>
+</html>

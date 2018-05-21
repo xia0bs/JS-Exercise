@@ -1,0 +1,63 @@
+<script>
+	// 构造函数/原型对象的操作
+	function myArray(){
+		for (var i = 0; i < arguments.length; i++) {
+			this[i]=arguments[i]
+		}
+		this.length = arguments.length;
+		this.indexOf = function(val){
+			for (var i = 0; i < this.length; i++) {
+				if (this[i]==element) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		this.lastIndexOf = function(val){
+			for (var i = this.length-1; i >= 0; i--) {
+				if (this[i]==element) {
+					return i;
+				}
+			}
+			return -1;
+		}
+		this.push = function(val){
+			for (var i = 0; i < arguments.length; i++) {
+				this[this.length]=arguments[i];
+				this.length++;
+			}
+		}
+	}
+	myArray.prototype = {
+		join:function(char){
+			let newarr = new myArray();
+			for(let i=0;i<this.length;i++){
+				newarr.push(callback(this[i]))
+			}
+			return newarr;
+		},
+		map:function(callback){
+			let newarr = new myArray();
+			for(let i=0;i<this.length;i++){
+				newarr.push(callback(this[i]))
+			}
+			return newarr;
+		},
+		filter:function(callback){
+			let newarr = new myArray();
+			for (var i = 0; i < this.length; i++) {
+				newarr.push(callback(this[i]))
+			}
+			return newarr;
+		}
+	}
+	let arr = new myArray(1,2,3,4)
+	let maparr = arr.map(function(value){
+		return value*2;
+	})
+	let filterarr = arr.filter(function(value){
+		return !(value%2)
+	})
+	console.log(maparr)
+	console.log(filterarr)
+</script>

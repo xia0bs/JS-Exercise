@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>操作元素的样式</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		body{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.box{
+			width: 400px;
+			height: 400px;
+			background: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+</body>
+<script>
+	let box = document.querySelector('.box');
+	let speed = 20;
+	setInterval(move,200)
+	function move(){
+		let bw = parseInt(getComputedStyle(box,null).width)
+		let ws = bw + speed;
+		let bh = parseInt(getComputedStyle(box,null).height)
+		let wh = bh + speed;
+		if (ws >= 600 && wh >=600) {
+			speed*=-1;
+		}
+		if (ws <= 400 && wh <=400) {
+			speed*=-1;
+		}
+		box.style.width = ws + 'px'
+		box.style.height = wh + 'px'
+	}
+</script>
+</html>
